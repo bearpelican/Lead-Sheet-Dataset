@@ -3,7 +3,7 @@ import json
 import copy
 import pickle
 import numpy as np
-from lookup_tables import VAL_TO_NAME, KEY_TO_SCALE, MODE_TO_KEY, NOTE_TO_OFFSET, ACCIDENTAL_DICT
+from lookup_tables import VAL_TO_NAME, KEY_TO_SCALE, MODE_TO_KEY, NOTE_TO_OFFSET, ACCIDENTAL_DICT, MODE_TO_RELATIVE_OFFSET
 from collections import OrderedDict
 
 
@@ -210,7 +210,6 @@ def set_alter(comp_vec, input_):
             op = -1
         else:
             raise ValueError('Unknown acc in alter: %s' % input_)
-        print(alt_event)
 
         # set idx of vec
         if note == '5':
@@ -434,9 +433,7 @@ def reset_chord_basic(data, comp_vec):
     return data
 
 
-def proc_event_to_symbol(melody_track, chord_track, mode, key='C'):
-    # get key offset
-    key_offset = get_key_offset(key)
+def proc_event_to_symbol(melody_track, chord_track, mode, key_offset=0):
 
     # melody
     melody_events = []
@@ -453,18 +450,28 @@ def proc_event_to_symbol(melody_track, chord_track, mode, key='C'):
     return melody_events, chord_events
 
 
-def proc_roman_to_symbol(raw, is_key=True, save_path=None, name='tab', save_type='pickle'):
+def proc_roman_to_symbol(raw, to_key=None, save_path=None, name='tab', save_type='pickle'):
     # metadata
     metadata = raw['metadata']
     mode = metadata['mode'] if metadata['mode'] is not None else 1
-    key = metadata['key'] if is_key else 'C'
+    
+    if to_key is None:
+        key = metadata['key']
+        # get key offset
+        key_offset = get_key_offset(key)
+    elif to_key == 'relative':
+        key_offset = MODE_TO_RELATIVE_OFFSET.get(mode, 0)
+    elif to_key == 'parallel':
+        key_offset = get_key_offset('C')
+    else:
+        raise ValueError('Unknown key offset mode')
 
     # tracks
     melody_track = raw['tracks']['melody']
     chord_track = raw['tracks']['chord']
 
     # to event symbol
-    melody_events, chord_events = proc_event_to_symbol(melody_track, chord_track, mode, key)
+    melody_events, chord_events = proc_event_to_symbol(melody_track, chord_track, mode, key_offset)
 
     # overwrite roman
     raw_new = copy.deepcopy(raw)
@@ -485,6 +492,6 @@ def proc_roman_to_symbol(raw, is_key=True, save_path=None, name='tab', save_type
             with open(file_name, 'w') as handle:
                 json.dump(raw_new, handle, cls=MyEncoder)
         else:
-            raise ValueError('Unkown type for saving')
+            raise ValueError('Unknown type for saving')
 
     return raw_new

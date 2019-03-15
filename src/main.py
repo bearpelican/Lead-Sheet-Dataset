@@ -77,29 +77,39 @@ def proc(xml_list, index=0):
                 continue
 
             # to event symbol
-            name = fn + '_symbol_key'
-            raw_symbol_key = proc_roman_to_symbol(
+            name = fn + '_symbol_key_original'
+            if os.path.exists(os.path.join(path_event, name + '.json')): continue
+            raw_symbol_key_original = proc_roman_to_symbol(
                                     raw_roman,
                                     save_path=path_event,
                                     name=name,
                                     save_type='json',
-                                    is_key=True)
+                                    to_key=None)
+            
+            name = fn + '_symbol_key_cmajor'
+            raw_symbol_key_cmajor = proc_roman_to_symbol(
+                                    raw_roman,
+                                    save_path=path_event,
+                                    name=name,
+                                    save_type='json',
+                                    to_key='relative')
 
-            name = fn + '_symbol_nokey'
-            raw_symbol_nokey = proc_roman_to_symbol(
+            name = fn + '_symbol_key_cparallel'
+            raw_symbol_key_cparallel = proc_roman_to_symbol(
                                     raw_roman,
                                     save_path=path_event,
                                     name=name,
                                     save_type='json',
-                                    is_key=False)
+                                    to_key='parallel')
 
             # to midi
-            proc_event_to_midi(raw_symbol_key, save_path=path_pianoroll, name=fn+'_key')
-            midi = proc_event_to_midi(raw_symbol_nokey, save_path=path_pianoroll, name=fn+'_nokey')
+            proc_event_to_midi(raw_symbol_key_original, save_path=path_pianoroll, name=fn+'_key_original')
+            proc_event_to_midi(raw_symbol_key_cparallel, save_path=path_pianoroll, name=fn+'_key_cparallel')
+            midi = proc_event_to_midi(raw_symbol_key_cmajor, save_path=path_pianoroll, name=fn+'_key_cmajor')
 
             # to pianoroll
 
-            beats_in_measure = int(raw_symbol_nokey['metadata']['beats_in_measure'])
+            beats_in_measure = int(raw_symbol_key_cparallel['metadata']['beats_in_measure'])
             pianoroll = proc_midi_to_pianoroll(midi, beats_in_measure)
             pianoroll.save(os.path.join(path_pianoroll, fn+'.npz'))
 

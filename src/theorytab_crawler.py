@@ -139,8 +139,6 @@ def traverse_website():
 
 if __name__ == '__main__':
 
-    archive_artist = traverse_website()
-
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
 
@@ -148,6 +146,8 @@ if __name__ == '__main__':
         os.makedirs(root_xml)
 
     path_artists = os.path.join(root_dir, 'archive_artist.json')
+    
+    archive_artist = traverse_website()
     with open(path_artists, "w") as f:
         json.dump(archive_artist, f)
 
@@ -174,6 +174,9 @@ if __name__ == '__main__':
 
                     if not os.path.exists(path_song):
                         os.makedirs(path_song)
+                    else:
+#                         print('Existing path for song. Skipping:', path_song)
+                        continue
 
                     time.sleep(sleep_time)
                     song_retrieval(a_name, s_name, path_song)

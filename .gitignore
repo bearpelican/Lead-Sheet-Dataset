@@ -2,3 +2,4 @@ datasets
 .ipynb_checkpoints
 __pycache__
 analysis
+*.tar.gz

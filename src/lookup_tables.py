@@ -111,6 +111,18 @@ MODE_TO_KEY = {
     6: -3,
     7: -5
 }
+
+# Offset to relative C major mode
+MODE_TO_RELATIVE_OFFSET = {
+    '1': 0,
+    '2': 2,
+    '3': 4,
+    '4': 5,
+    '5': 7,
+    '6': 9,
+    '7': 11
+}
+
 # KEY_DICT map the key string to its note number
 KEY_DICT = {
     'A': 57,
