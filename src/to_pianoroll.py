@@ -91,6 +91,7 @@ def proc_to_midi(
         melody_events,
         chord_events,
         key='C',
+        mode='1',
         to_chroma=False,
         bpm=120,
         beats_in_measure=4,
@@ -108,7 +109,8 @@ def proc_to_midi(
     chord_track, chord_symbols = wrapping_chord(chord_events, beats_sec, to_chroma=to_chroma)
     melody_track = wrapping_melody(melody_events, beats_sec)
     ts = pretty_midi.TimeSignature(beats_in_measure, 4, 0)
-    ks = pretty_midi.KeySignature(get_key_offset(key), 0)
+    mm_offset = 12 if mode == '6' else 0
+    ks = pretty_midi.KeySignature(get_key_offset(key)+mm_offset, 0)
 
     lead_sheet.time_signature_changes.append(ts)
     lead_sheet.key_signature_changes.append(ks)
@@ -129,6 +131,7 @@ def proc_event_to_midi(raw_symbol, save_path='./', name='test'):
         raw_symbol['tracks']['melody'],
         raw_symbol['tracks']['chord'],
         key=raw_symbol['metadata']['key'],
+        mode=raw_symbol['metadata']['mode'],
         bpm=raw_symbol['metadata']['BPM'],
         beats_in_measure=raw_symbol['metadata']['beats_in_measure'],
         save_path=save_path,

@@ -25,6 +25,8 @@ def traverse_dir(root_dir, extension='.xml', is_pure=True):
                 mix_path = os.path.join(root, file)
                 pure_path = mix_path[len(root_dir)+1:] if is_pure else mix_path
                 file_list.append(pure_path)
+#         if len(file_list) > 100: break
+            
 
     return file_list
 

@@ -451,30 +451,34 @@ def proc_event_to_symbol(melody_track, chord_track, mode, key_offset=0):
 
 
 def proc_roman_to_symbol(raw, to_key=None, save_path=None, name='tab', save_type='pickle'):
+    raw_new = copy.deepcopy(raw)
+    
     # metadata
-    metadata = raw['metadata']
+    metadata = raw_new['metadata']
     mode = metadata['mode'] if metadata['mode'] is not None else 1
     
-    if to_key is None:
+    if to_key is None: # must offset final pitch to intended original key
         key = metadata['key']
         # get key offset
         key_offset = get_key_offset(key)
-    elif to_key == 'relative':
+    elif to_key == 'relative': # roman already in key of c - must offset mode to major
         key_offset = MODE_TO_RELATIVE_OFFSET.get(mode, 0)
-    elif to_key == 'parallel':
+        metadata['key'] = 'C'
+        metadata['mode'] = '1'
+    elif to_key == 'parallel': # roman already in key of c - no offset
         key_offset = get_key_offset('C')
+        metadata['key'] = 'C'
     else:
         raise ValueError('Unknown key offset mode')
 
     # tracks
-    melody_track = raw['tracks']['melody']
-    chord_track = raw['tracks']['chord']
+    melody_track = raw_new['tracks']['melody']
+    chord_track = raw_new['tracks']['chord']
 
     # to event symbol
     melody_events, chord_events = proc_event_to_symbol(melody_track, chord_track, mode, key_offset)
 
     # overwrite roman
-    raw_new = copy.deepcopy(raw)
     raw_new['tracks']['melody'] = melody_events
     raw_new['tracks']['chord'] = chord_events
 
