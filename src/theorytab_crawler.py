@@ -9,8 +9,8 @@ import string
 website = 'https://www.hooktheory.com'
 base_url = website + '/theorytab/artists/'
 sleep_time = 0.11
-# alphabet_list = string.ascii_lowercase
-alphabet_list = 'x'
+alphabet_list = string.ascii_lowercase
+#alphabet_list = 'qrstuvwyz'
 root_dir = '../datasets'
 root_xml = '../datasets/xml'
 
@@ -156,6 +156,7 @@ if __name__ == '__main__':
 
     count_ok = 0
     song_count = archive_artist['num_song']
+
 
     for ch in alphabet_list:
         path_ch = os.path.join(root_xml, ch)

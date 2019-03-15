@@ -131,8 +131,8 @@ if __name__ == '__main__':
     queue = mp.Queue()
     processes = []
     amount = len(xml_list)
-    # n_cpu = mp.cpu_count()  # number of core
-    n_cpu = 3
+    n_cpu = mp.cpu_count()  # number of core
+#     n_cpu = 3
     amount_batch = math.ceil(amount/n_cpu)
     print('cpu count: %d, batch size: %d, total: %d' % (n_cpu, amount_batch, amount))
 

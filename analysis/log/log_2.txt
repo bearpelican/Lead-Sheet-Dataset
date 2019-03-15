@@ -1,0 +1,86 @@
+[2] (287/6640)[288/288] t/taylor-swift/you-belong-with-me/pre-chorus.xml  -  'NoneType' object has no attribute 'text'
+https://www.hooktheory.com/theorytab/view/taylor-swift/you-belong-with-me
+[2] (289/6640)[289/290] t/taylor-swift/you-belong-with-me/chorus.xml  -  'NoneType' object has no attribute 'text'
+https://www.hooktheory.com/theorytab/view/taylor-swift/you-belong-with-me
+[2] (290/6640)[289/291] t/taylor-swift/you-belong-with-me/intro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/taylor-swift/you-belong-with-me
+[2] (338/6640)[336/339] t/taichi-mukai/reset-%2528kaze-ga-tsuyoku-fuiteiru%2529/intro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/taichi-mukai/reset-%2528kaze-ga-tsuyoku-fuiteiru%2529
+[2] (339/6640)[336/340] t/taichi-mukai/reset/.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/taichi-mukai/reset
+[2] (392/6640)[388/393] t/the-waifs/london-still/verse.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/the-waifs/london-still
+[2] (520/6640)[515/521] t/the-xx/intro/intro.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/the-xx/intro
+[2] (846/6640)[840/847] t/travie-mccoy-ft-bruno-mars/billionaire/verse.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/travie-mccoy-ft-bruno-mars/billionaire
+[2] (891/6640)[884/892] t/take-us-back/alela-diane/verse-and-pre-chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/take-us-back/alela-diane
+[2] (892/6640)[884/893] t/take-us-back/alela-diane/verse.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/take-us-back/alela-diane
+[2] (1169/6640)[1160/1170] t/the-rasmus/in-the-shadows/intro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/the-rasmus/in-the-shadows
+[2] (1534/6640)[1524/1535] t/the-beatles/drive-my-car/verse.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/the-beatles/drive-my-car
+[2] (1596/6640)[1585/1597] t/the-beatles/the-end/solo.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/the-beatles/the-end
+[2] (2145/6640)[2133/2146] k/koji-kondo/mario-brothers-theme/chorus.xml  -  'NoneType' object has no attribute 'text'
+https://www.hooktheory.com/theorytab/view/koji-kondo/mario-brothers-theme
+[2] (2299/6640)[2286/2300] k/katy-pary/fireworks/chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/katy-pary/fireworks
+[2] (2306/6640)[2292/2307] k/kim-carnes/bette-davis-eyes/chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/kim-carnes/bette-davis-eyes
+[2] (2315/6640)[2300/2316] k/kirbys-adventure---rainbow-resort/nintendo/chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/kirbys-adventure---rainbow-resort/nintendo
+[2] (2325/6640)[2309/2326] k/kelly-clarkson/breakaway/verse-and-pre-chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/kelly-clarkson/breakaway
+[2] (2742/6640)[2725/2743] k/katy-perry/waking-up-in-vegas/chorus.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/katy-perry/waking-up-in-vegas
+[2] (2754/6640)[2736/2755] k/katy-perry/peacock/verse-and-pre-chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/katy-perry/peacock
+[2] (3079/6640)[3060/3080] r/random-movement/down-somehow/instrumental.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/random-movement/down-somehow
+[2] (3080/6640)[3060/3081] r/random-movement/down-somehow/verse.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/random-movement/down-somehow
+[2] (3243/6640)[3222/3244] r/radiohead/motion-picture-soundtrack/verse-and-pre-chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/radiohead/motion-picture-soundtrack
+[2] (3939/6640)[3917/3940] m/mike-posner/cooler-than-me/verse.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/mike-posner/cooler-than-me
+[2] (3940/6640)[3917/3941] m/mike-posner/cooler-than-me/chorus.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/mike-posner/cooler-than-me
+[2] (3941/6640)[3917/3942] m/mike-posner/cooler-than-me/bridge.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/mike-posner/cooler-than-me
+[2] (4140/6640)[4115/4141] m/minae-fuji/mega-man-4---ring-man/chorus.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/minae-fuji/mega-man-4---ring-man
+[2] (4608/6640)[4582/4609] m/michiru-yamane/gaze-up-at-the-darkness/instrumental.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/michiru-yamane/gaze-up-at-the-darkness
+[2] (4716/6640)[4689/4717] m/missy-higgins/night-minds/verse.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/missy-higgins/night-minds
+[2] (4717/6640)[4689/4718] m/missy-higgins/night-minds/chorus.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/missy-higgins/night-minds
+[2] (5141/6640)[5112/5142] m/matchbox-20/real-world/verse.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/matchbox-20/real-world
+[2] (5143/6640)[5113/5144] m/matchbox-20/push/verse.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/matchbox-20/push
+[2] (5144/6640)[5113/5145] m/matchbox-20/push/chorus.xml  -  Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+https://www.hooktheory.com/theorytab/view/matchbox-20/push
+[2] (5221/6640)[5189/5222] q/queen/bohemian-rhapsody/outro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/queen/bohemian-rhapsody
+[2] (5223/6640)[5190/5224] q/queen/bohemian-rhapsody/instrumental.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/queen/bohemian-rhapsody
+[2] (5233/6640)[5199/5234] q/queen/bohemian-rhapsody/pre-outro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/queen/bohemian-rhapsody
+[2] (5276/6640)[5241/5277] a/arthur/beginning-of-time/chorus.xml  -  Document is empty, line 1, column 1 (<string>, line 1)
+https://www.hooktheory.com/theorytab/view/arthur/beginning-of-time
+[2] (5368/6640)[5332/5369] a/adventure-club/wonder/outro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/adventure-club/wonder
+[2] (5371/6640)[5334/5372] a/adventure-club/wonder/bridge.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/adventure-club/wonder
+[2] (5413/6640)[5375/5414] a/antonio-vivaldi/the-four-seasons-concerto-no-4-winter/intro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/antonio-vivaldi/the-four-seasons-concerto-no-4-winter
+[2] (6100/6640)[6061/6101] a/adelina-tahiri/heart-on-fire/intro.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/adelina-tahiri/heart-on-fire
+[2] (6436/6640)[6396/6437] a/antonim/melancholy-soldier/bridge.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/antonim/melancholy-soldier
+[2] (6495/6640)[6454/6496] a/asf/asdfas/intro-and-verse.xml  -  Cannot get beat timings to quantize pianoroll.
+https://www.hooktheory.com/theorytab/view/asf/asdfas
