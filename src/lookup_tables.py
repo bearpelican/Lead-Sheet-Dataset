@@ -1,3 +1,5 @@
+from enum import Enum
+
 KEY_TO_NAME = {
     7: 'borrow (+7)',
     6: 'borrow (+6)',
@@ -142,6 +144,8 @@ ACCIDENTAL_DICT = {
     'f': -1
 }
 
+# TO_KEY_TYPE
+TO_KEY_TYPE = Enum('ToKeyType', 'Original ParallelKeyC MajorKeyC')
 
 def get_key_root(key):
     """Given the key string (e.g. 'C', 'F#', 'Db'), return the note number
