@@ -1,4 +1,5 @@
 import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from bs4 import BeautifulSoup
 import os
 import time
@@ -9,14 +10,13 @@ import string
 website = 'https://www.hooktheory.com'
 base_url = website + '/theorytab/artists/'
 sleep_time = 0.11
-alphabet_list = string.ascii_lowercase
-#alphabet_list = 'qrstuvwyz'
+# alphabet_list = string.ascii_lowercase
+alphabet_list = 'qrstuvwxyz'
 root_dir = '../datasets'
 root_xml = '../datasets/xml'
 
 
 def song_retrieval(artist, song, path_song):
-
     suffix = '/theorytab/view/' + artist + '/' + song
     song_url = song_url = 'https://www.hooktheory.com' + suffix
     response_song = requests.get(song_url)
@@ -24,14 +24,13 @@ def song_retrieval(artist, song, path_song):
     soup = BeautifulSoup(response_song.text, 'html.parser')
 
     section_list = [item['href'].split('#')[-1] for item in soup.find_all('a', {'href': re.compile(suffix+'#')})]
-    pk_list = [item['href'].split('/')[-1] for item in soup.find_all('a', {'href': re.compile("/theorytab/chords/pk/")})]
-
+    tab_list = soup.find_all('div', {'id': re.compile("tab-")})
+    pk_list = [item.get('id').split('-')[-1] for item in tab_list]
     # save xml
     for idx, pk in enumerate(pk_list):
         req_url = 'https://www.hooktheory.com/songs/getXmlByPk?pk=' + str(pk)
         response_info = requests.get(req_url)
         content = response_info.text
-
         with open(os.path.join(path_song, section_list[idx] + ".xml"), "w", encoding="utf-8") as f:
             f.write(content)
         time.sleep(0.08)
@@ -51,9 +50,10 @@ def song_retrieval(artist, song, path_song):
 
     with open(os.path.join(path_song, 'song_info.json'), "w") as f:
         json.dump(info, f)
+    return artist, song, path_song
 
-
-def get_song_list(url_artist, quite=False):
+def get_song_list(url_artist):
+    artist_name = url_artist.split('/')[-1]
     response_tmp = requests.get(website + url_artist)
     soup = BeautifulSoup(response_tmp.text, 'html.parser')
     item_list = soup.find_all("li", {"class": re.compile("overlay-trigger")})
@@ -62,10 +62,7 @@ def get_song_list(url_artist, quite=False):
     for item in item_list:
         song_name = item.find_all("a", {"class": "a-no-decoration"})[0]['href'].split('/')[-1]
         song_name_list.append(song_name)
-        if not quite:
-            print('   > %s' % song_name)
-    return song_name_list
-
+    return artist_name, song_name_list
 
 def traverse_website():
     '''
@@ -78,7 +75,6 @@ def traverse_website():
     song_count = 0
 
     for ch in alphabet_list:
-        time.sleep(sleep_time)
         url = base_url + ch
         response_tmp = requests.get(url)
         soup = BeautifulSoup(response_tmp.text, 'html.parser')
@@ -91,7 +87,6 @@ def traverse_website():
         for page in range(1, 9999):
             url = 'https://www.hooktheory.com/theorytab/artists/'+ch+'?page=' + str(page)
             print(url)
-            time.sleep(sleep_time)
             response_tmp = requests.get(url)
             soup = BeautifulSoup(response_tmp.text, 'html.parser')
             item_list = soup.find_all("li", {"class": re.compile("overlay-trigger")})
@@ -113,16 +108,24 @@ def traverse_website():
 
         # get song of artists
         artist_song_dict = dict()
-
-        for url_artist in url_artist_list:
-            artist_count += 1
-            time.sleep(sleep_time)
-            artist_name = url_artist.split('/')[-1]
-            print(artist_name)
-            song_name_list = get_song_list(url_artist)
-            song_count += len(song_name_list)
-            artist_song_dict[artist_name] = song_name_list
-
+        
+        def artist_song_map(url_artist):
+            try: return get_song_list(url_artist)
+            except Exception as e:
+                print('Error:', url_artist, e)
+                return None, None
+            
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            for url_artist, song_name_list in executor.map(artist_song_map, url_artist_list):
+                if url_artist is None: continue
+                artist_count += 1
+                song_count += len(song_name_list)
+                artist_name = url_artist.split('/')[-1]
+                artist_song_dict[artist_name] = song_name_list
+                
+                print(artist_name)
+                print('   > ' + '\n   > '.join(song_name_list))
+            
         archive_artist[ch] = artist_song_dict
         list_pages.append(page_count)
 
@@ -148,42 +151,43 @@ if __name__ == '__main__':
     path_artists = os.path.join(root_dir, 'archive_artist.json')
     
     archive_artist = traverse_website()
+    
+    # Merge old json
+    if os.path.exists(root_xml):
+        with open(path_artists, "r") as f:
+            archive_artist = {**json.load(f), **archive_artist}
+    
     with open(path_artists, "w") as f:
         json.dump(archive_artist, f)
 
     with open(path_artists, "r") as f:
         archive_artist = json.load(f)
 
-    count_ok = 0
     song_count = archive_artist['num_song']
 
 
     for ch in alphabet_list:
         path_ch = os.path.join(root_xml, ch)
         print('==[%c]=================================================' % ch)
-        
+
         if not os.path.exists(path_ch):
             os.makedirs(path_ch)
 
-        for a_name in archive_artist[ch].keys():
-            for s_name in archive_artist[ch][a_name]:
+        songs = []
+        for a_name, s_list in archive_artist[ch].items():
+            for s_name in s_list:
+                path_song = os.path.join(path_ch, a_name, s_name)
+                if os.path.exists(path_song): continue
+                songs.append((a_name, s_name, path_song))
 
-                try:
-                    print('(%3d/%3d) %s   %s' % (count_ok, song_count, a_name, s_name))
-                    path_song = os.path.join(path_ch, a_name, s_name)
+        def song_map(args):
+            os.makedirs(args[-1], exist_ok=True)
+            try: return song_retrieval(*args)
+            except Exception as e:
+                print('Error:', args, e)
+                return None, None, None
 
-                    if not os.path.exists(path_song):
-                        os.makedirs(path_song)
-                    else:
-#                         print('Existing path for song. Skipping:', path_song)
-                        continue
-
-                    time.sleep(sleep_time)
-                    song_retrieval(a_name, s_name, path_song)
-
-                    count_ok += 1
-
-                except Exception as e:
-                    print(e)
-
-    print('total:', count_ok)
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            for idx, (artist, song, path_song) in enumerate(executor.map(song_map, songs)):
+                if artist is None: continue
+                print('(%3d/%3d) %s   %s' % (idx, len(songs), artist, song))

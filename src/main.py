@@ -66,6 +66,10 @@ def proc(xml_list, index=0):
             path_xml = os.path.join(root_xml, path)
             path_event = os.path.join(root_event, path)
             path_pianoroll = os.path.join(root_pianoroll, path)
+            
+            # check if exists (using symbol)
+            name = fn + '_symbol_key_original'
+            if os.path.exists(os.path.join(path_event, name + '.json')): continue
 
             # roman
             xml_file = os.path.join(path_xml, fn+'.xml')
@@ -80,7 +84,6 @@ def proc(xml_list, index=0):
 
             # to event symbol
             name = fn + '_symbol_key_original'
-            if os.path.exists(os.path.join(path_event, name + '.json')): continue
             raw_symbol_key_original = proc_roman_to_symbol(
                                     raw_roman,
                                     save_path=path_event,
