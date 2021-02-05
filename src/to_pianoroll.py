@@ -140,6 +140,6 @@ def proc_event_to_midi(raw_symbol, save_path='./', name='test'):
 
 
 def proc_midi_to_pianoroll(filename, beats_in_measure):
-    piano_roll = pypianoroll.parse(filename)
+    piano_roll = pypianoroll.read(filename)
     piano_roll.downbeat[0::piano_roll.beat_resolution*beats_in_measure] = True
     return piano_roll

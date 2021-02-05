@@ -3,3 +3,4 @@ datasets
 __pycache__
 analysis
 *.tar.gz
+.DS_Store
